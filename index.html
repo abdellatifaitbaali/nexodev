@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXO Dev (LLC) | Custom Web, Mobile & Game Development</title>
+    <meta name="description" content="NEXO Dev is a premier development studio specializing in custom web applications, mobile apps, and game development. Partner with us for user-centered, scalable solutions.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="nexo_logo_final.png">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-card: #141417;
+            --accent-primary: #6366f1; /* Indigo */
+            --accent-secondary: #a855f7; /* Purple */
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            right: -10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60%;
+            height: 80%;
+            background: url('nexo_hero_image_1766101044973.png') center/cover no-repeat;
+            opacity: 0.4;
+            mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+            z-index: 1;
+        }
+
+        /* --- Services --- */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-dim);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-10px);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* --- Stats --- */
+        .stats {
+            background: var(--bg-card);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 4rem 5%;
+            margin: 4rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-item h4 {
+            font-size: 3rem;
+            color: var(--accent-primary);
+        }
+
+        /* --- Contact --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: var(--bg-card);
+            padding: 4rem;
+            border-radius: 32px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .contact-info h3 { margin-bottom: 1rem; }
+        .contact-info p { color: var(--text-dim); margin-bottom: 2rem; }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--glass);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        input, textarea {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent-primary);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .footer-bottom {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        /* --- Privacy/Terms Modals --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            padding: 5%;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-dim);
+        }
+
+        .privacy-body h2 { margin: 2rem 0 1rem; }
+        .privacy-body h3 { margin: 1.5rem 0 1rem; }
+        .privacy-body ul { margin-left: 2rem; }
+
+        @media (max-width: 768px) {
+            .hero-image-overlay { display: none; }
+            .nav-links { display: none; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="nexo_logo_final.png" alt="NEXO Dev Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
+            NEXO DEV
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
+        </div>
+    </nav>
+
+    <div id="home" class="hero">
+        <div class="hero-content">
+            <h1>Scalable Solutions for the Next Generation.</h1>
+            <p>We specialized in custom web and mobile applications, game development, and high-impact digital products. From prototype to production.</p>
+            <a href="#contact" class="btn btn-primary">Start Your Project</a>
+        </div>
+        <div class="hero-image-overlay"></div>
+    </div>
+
+    <section id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>Comprehensive development solutions tailored to your business needs.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-code"></i>
+                <h3>Web Applications</h3>
+                <p>Robust, scalable corporate platforms and SaaS solutions built with modern frameworks.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile Apps</h3>
+                <p>Native and cross-platform mobile experiences for iOS and Android with seamless performance.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-gamepad"></i>
+                <h3>Game Development</h3>
+                <p>Immersive 2D and 3D gaming experiences designed for mobile, desktop, and consoles.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item">
+            <h4>10+</h4>
+            <p>Years Experience</p>
+        </div>
+        <div class="stat-item">
+            <h4>50+</h4>
+            <p>Digital Products</p>
+        </div>
+        <div class="stat-item">
+            <h4>100%</h4>
+            <p>Client Satisfaction</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Build Something Great</h3>
+                <p>Ready to turn your idea into reality? Contact our studio today for a free consultation.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>nexodev.llc@outlook.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>1209 MOUNTAIN ROAD PL NE STE N, ALBUQUERQUE, NM 87110</span>
+                    </div>
+                </div>
+            </div>
+            <form id="contactForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Tell us about your project" required></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/abdellatifaitbaali" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://x.com/aka_N3X0" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/abdellatif-ait-ba%C3%A2li/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2025 NEXO Dev (LLC). All Rights Reserved.</p>
+        <div class="footer-bottom">
+            <a href="#" onclick="openModal('privacyModal')" style="color: var(--text-dim); text-decoration: none;">Privacy Policy</a> | 
+            <a href="#" onclick="alert('Terms of Service coming soon!')" style="color: var(--text-dim); text-decoration: none;">Terms of Service</a>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('privacyModal')">&times;</span>
+            <div class="privacy-body">
+                <h1>Privacy Policy</h1>
+                <p>Last updated: December 19, 2025</p>
+                
+                <p>NEXO Dev (LLC) ("we", "our", or "us") operates the website and various mobile applications. This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service.</p>
+
+                <h2>1. Information Collection and Use</h2>
+                <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
+                <h3>Types of Data Collected</h3>
+                <ul>
+                    <li><strong>Personal Data:</strong> While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). This may include Email address, First name and last name, and Usage Data.</li>
+                    <li><strong>Usage Data:</strong> We may also collect information on how the Service is accessed and used. This may include your computer's IP address, browser type, browser version, and the pages of our Service that you visit.</li>
+                </ul>
+
+                <h2>2. Use of Data</h2>
+                <p>NEXO Dev (LLC) uses the collected data for various purposes:</p>
+                <ul>
+                    <li>To provide and maintain our Service</li>
+                    <li>To notify you about changes to our Service</li>
+                    <li>To provide customer support</li>
+                    <li>To gather analysis or valuable information so that we can improve our Service</li>
+                </ul>
+
+                <h2>3. Disclosure of Data</h2>
+                <p>We may disclose your Personal Data in the good faith belief that such action is necessary to comply with a legal obligation, protect and defend the rights or property of NEXO Dev (LLC), or protect against legal liability.</p>
+
+                <h2>4. Security of Data</h2>
+                <p>The security of your data is important to us but remember that no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
+
+                <h2>5. Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                <ul>
+                    <li>By email: nexodev.llc@outlook.com</li>
+                    <li>By visiting our location: 1209 MOUNTAIN ROAD PL NE STE N, ALBUQUERQUE, NM 87110</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Form Submission Placeholder
+        document.getElementById('contactForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form, but we would have received your inquiry at nexodev.llc@outlook.com.');
+            this.reset();
+        }
+    </script>
+</body>
+</html>
